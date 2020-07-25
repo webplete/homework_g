@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="//image9.coupangcdn.com/image/coupang/favicon/v2/favicon.ico">
+
+    <title>프롬비 탁상용 선풍기</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+    <style>
+        .wrap{
+            width: 600px;
+            margin: 10px auto 50px;
+        }
+
+        .info h4,
+        .info h2,
+        .info h5 {
+            display: inline;
+        }
+
+        .order {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+    <div>
+        디지털/가전 > 선풍기 > 탁상용선풍기
+    </div>
+
+    <div>
+        <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/492x492ex/image/retail/images/2020/05/07/19/4/9d401cca-14b7-465e-92d2-6eedc1704a18.jpg"
+             width="500" height="500">
+    </div>
+
+    <div>
+        <h6>상품번호:12345678</h6>
+    </div>
+
+    <div class="pd-title">
+        <p>
+        <h1 style="font-weight: bold" id="#order_button">프롬비 자동회전 탁상용 선풍기</h1></p>
+        <hr>
+    </div>
+
+    <div class="info">
+        <h4 style="color: darkgray; text-decoration:line-through">39,000원</h4>
+        <h2 style="color: crimson; font-weight: bold">29,800원</h2>
+        <h5>무료배송</h5>
+    </div>
+
+    <p>
+    <div>
+        당신이 원하는 곳 어디서나 자유롭게, 시원한 자연바람으로 회전이 가능한 프롬비 탁상용 선풍기입니다.
+        <hr>
+    </div>
+    </p>
+
+    <!--인풋 시작-->
+
+    <div class="info">
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <!--                <label class="input-group-text" for="inputGroupSelect01">컬러선택</label>-->
+            </div>
+            <select class="custom-select" id="order-count"> // id값은 고유해야한다. 중복되면 안된다.
+                <option selected value=""> - 컬러선택 -</option>
+                <option value="1">레드</option>
+                <option value="2">네이비</option>
+                <option value="3">블랙</option>
+                <option value="4">화이트</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <!--                <label class="input-group-text" for="inputGroupSelect01">수량</label>-->
+            </div>
+            <select class="custom-select" id="order-count">
+                <option selected value=""> - 수량선택 -</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+
+        </div>
+        <hr>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">주문자 이름</span>
+            </div>
+            <input type="text" class="form-control" id="order-name" aria-describedby="basic-addon3">
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">주소</span>
+            </div>
+            <input type="text" class="form-control" id="order-address" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">전화번호</span>
+            </div>
+            <input type="text" class="form-control" id="order-phone" aria-describedby="basic-addon3">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon3">배송메세지</span>
+            </div>
+            <input type="text" class="form-control" id="order-phone" aria-describedby="basic-addon3">
+        </div>
+        <hr>
+
+        <!--인풋 끝-->
+
+        <div class="order">
+            <button onclick="order()" type="button" class="btn btn-danger btn-lg" data-toggle="tooltip" data-placement="top" title="입력하신 정보가 정확한지 확인하신후 주문해주세요!">주문하기</button>
+            <button onclick="cart()" type="button" class="btn btn-secondary btn-lg">장바구니 담기</button>
+            <button onclick="wish()" type="button" class="btn btn-outline-danger btn-lg">♥찜하기</button>
+
+        </div>
+    </div>
+    <div>
+        <hr>
+        <h6>상품상세정보</h6>
+        <img src="https://thumbnail8.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2020/05/07/19/7/dfcc77d4-cf16-4004-aca9-27626eb3c86f.jpg" width="600">
+    </div>
+    <p>
+    <hr>
+    <h6 style="text-align: right"><a href="##order_button" title="위로">TOP</a></h6>
+    </p>
+</div>
+
+<!-- JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+<script>
+    function order () {
+        alert('주문이 완료 되었습니다.');
+    }
+
+    function cart () {
+        alert('장바구니에 담았습니다.');
+    }
+
+    function wish () {
+        alert('찜한 상품에 등록되었습니다.');
+    }
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+</body>
+</html>
+
+// 리뷰
+// h 태그는 핵심 메인 타이틀에만 사용하고 최대한 class 를 활용하여 꾸미는것이 좋다.
+// 이미지에는 alt 태그를 사용하는 것이 좋다.
+// css 는 별도 파일을 만들어서 불러오기 하는 것이 좋다.
+// 파이참 오른쪽 모서리쪽에 컬러를 참고하여 오류수정!(노랑: 경고 / 빨강: 에러)
