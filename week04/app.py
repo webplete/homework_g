@@ -33,7 +33,7 @@ def save_order():
     }
     db.orderList.insert_one(doc)
 
-    return jsonify({'result': 'success', 'msg': '연결되었습니다.!'})
+    return jsonify({'result': 'success', 'msg': '주문 완료되었습니다.!'})
 
 
 # 주문 목록보기(Read) API

@@ -124,20 +124,20 @@
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="name">주문자 이름</span>
+                <span class="input-group-text" style="width: 110px" id="name">주문자 이름</span>
             </div>
             <input type="text" class="form-control" id="order-name" aria-describedby="basic-addon3">
         </div>
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="address">주소</span>
+                <span class="input-group-text" style="width: 110px" id="address">주소</span>
             </div>
             <input type="text" class="form-control" id="order-address" aria-describedby="basic-addon3">
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="phone">전화번호</span>
+                <span class="input-group-text" style="width: 110px" id="phone">전화번호</span>
             </div>
             <!-- 향후 placeholder 보다는 for 와 label 을 활용하는것이 더용이하다.-->
             <input type="text" class="form-control" id="order-phone" aria-describedby="basic-addon3"
@@ -145,7 +145,7 @@
         </div>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="memo">배송메세지</span>
+                <span class="input-group-text" style="width: 110px" id="memo">배송메세지</span>
             </div>
             <input type="text" class="form-control" id="delivery_memo" aria-describedby="basic-addon3">
         </div>
@@ -223,26 +223,31 @@
         if (color == '') {
             alert('컬러를 선택해주세요')
             $('#color-choice').focus()
+            return
 
         } else if (count == '') {
             alert('수량을 선택해주세요')
             $('#order-count').focus()
+            return
 
         } else if (name == '') {
             alert('이름을 입력해주세요')
             $('#order-name').focus()
+            return
 
         } else if (address == '') {
             alert('주소를 입력해주세요')
             $('#order-address').focus()
+            return
 
         } else if (phone == '') {
             alert('전화번호를 입력해주세요')
             $('#order-phone').focus()
+            return
 
         } else if (!isCellphone(phone)) {  // \n은 (newline) 다음줄 맨 처음으로 가라는 의미
             alert('휴대폰번호 입력형식이 아닙니다. \n 010-0000-0000으로 입력해주세요')
-
+            return
         }
 
         function isCellphone(p) {
