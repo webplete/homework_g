@@ -294,7 +294,7 @@
                 if (response["result"] == "success") {
                     let orderLists = response['orderList_from_server']
                     for (let i = 0; i < orderLists.length; i++) {
-                        makeOrderList(orderLists[i]["color_from_client"], orderLists[i]["count_from_client"], orderLists[i]["name_from_client"], orderLists[i]["address_from_client"], orderLists[i]["phone_from_client"], orderLists[i]["message_from_client"]);
+                        makeOrderList(orderLists[i]["color"], orderLists[i]["count"], orderLists[i]["name"], orderLists[i]["address"], orderLists[i]["phone"], orderLists[i]["message"]);
 
                     }
                     // alert(response["msg"]);
@@ -305,14 +305,14 @@
         })
     }
 
-    function makeOrderList(color_from_client, count_from_client, name_from_client, address_from_client, phone_from_client, message_from_client) {
+    function makeOrderList(color, count, name, address, phone, message) {
         let tempHtml = `<tr>
-                    <td>${color_from_client}</td>
-                    <td>${count_from_client}</td>
-                    <td>${name_from_client}</td>
-                    <td>${address_from_client}</td>
-                    <td>${phone_from_client}</td>
-                    <td>${message_from_client}</td>
+                    <td>${color}</td>
+                    <td>${count}</td>
+                    <td>${name}</td>
+                    <td>${address}</td>
+                    <td>${phone}</td>
+                    <td>${message}</td>
                 </tr>`;
         $("#orders_box").append(tempHtml);
     }
@@ -351,9 +351,3 @@
 
 </body>
 </html>
-
-<!--// 리뷰-->
-<!--// h 태그는 핵심 메인 타이틀에만 사용하고 최대한 class 를 활용하여 꾸미는것이 좋다.-->
-<!--// 이미지에는 alt 태그를 사용하는 것이 좋다.-->
-<!--// css 는 별도 파일을 만들어서 불러오기 하는 것이 좋다.-->
-<!--// 파이참 오른쪽 모서리쪽에 컬러를 참고하여 오류수정!(노랑: 경고 / 빨강: 에러)-->
