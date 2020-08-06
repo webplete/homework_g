@@ -26,13 +26,26 @@
             display: inline;
         }
 
+        .table_title {
+            text-align: center;
+        }
+
         .order {
             text-align: center;
+        }
+
+        .orders {
+            margin-top: 80px;
+            width: 800px;
+            text-align: center;
+
         }
 
         .exchange-info {
             color: steelblue;
         }
+
+
     </style>
 
 </head>
@@ -86,12 +99,12 @@
             <div class="input-group-prepend">
                 <!--                <label class="input-group-text" for="inputGroupSelect01">컬러선택</label>-->
             </div>
-            <select class="custom-select" id="color-choice"> // id값은 고유해야한다. 중복되면 안된다.
+            <select class="custom-select" id="color-choice">
                 <option selected value=""> - 컬러선택 -</option>
-                <option value="1">레드</option>
-                <option value="2">네이비</option>
-                <option value="3">블랙</option>
-                <option value="4">화이트</option>
+                <option value="레드">레드</option>
+                <option value="네이비">네이비</option>
+                <option value="블랙">블랙</option>
+                <option value="화이트">화이트</option>
             </select>
         </div>
 
@@ -146,19 +159,48 @@
             </button>
             <button onclick="cart()" type="button" class="btn btn-secondary btn-lg">장바구니 담기</button>
             <button onclick="wish()" type="button" class="btn btn-outline-danger btn-lg">♥찜하기</button>
-
         </div>
+        <div class="orders">
+
+            <table class="table">
+                <thead>
+                <tr class="table_title">
+                    <th scope="col">컬러</th>
+                    <th scope="col">수량</th>
+                    <th scope="col">이름</th>
+                    <th scope="col">주소</th>
+                    <th scope="col">전화번호</th>
+                    <th scope="col">배송메세지</th>
+                </tr>
+                </thead>
+                <tbody id="orders_box">
+                <tr>
+                    <td>레드</td>
+                    <td>1</td>
+                    <td>이형진</td>
+                    <td>서울 스파르타코딩클럽 성수점</td>
+                    <td>010-1234-5678</td>
+                    <td>빠른배송 부탁드립니다.</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
     </div>
-    <div>
-        <hr>
-        <h6>상품상세정보</h6>
-        <img src="https://thumbnail8.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2020/05/07/19/7/dfcc77d4-cf16-4004-aca9-27626eb3c86f.jpg"
-             width="600">
-    </div>
-    <p>
-    <hr>
-    <h6 style="text-align: right"><a href="##order_button" title="위로">TOP</a></h6>
-    </p>
+
+    <!--    <div id="post-box" class="detail_info">-->
+    <!--        <hr/>-->
+    <!--        <h6>상품상세정보</h6>-->
+
+    <!--        <img src="https://thumbnail8.coupangcdn.com/thumbnails/remote/q89/image/retail/images/2020/05/07/19/7/dfcc77d4-cf16-4004-aca9-27626eb3c86f.jpg"-->
+    <!--             width="600">-->
+
+    <!--    </div>-->
+    <!--    <p>-->
+    <!--    <hr/>-->
+    <!--    <h6 style="text-align: right"><a href="##order_button" title="위로">TOP</a></h6>-->
+    <!--    </p>-->
 </div>
 
 <!-- JS -->
@@ -171,9 +213,12 @@
         crossorigin="anonymous"></script>
 
 <script>
+
     $(document).ready(function () {
-        // $('#orders-box').html('');
+        $('#orders_box').html('');
         showExchange();
+        showOrder();
+
     })
 
     function order() {
@@ -182,6 +227,9 @@
         let name = $('#order-name').val();
         let address = $('#order-address').val();
         let phone = $('#order-phone').val();
+        let message = $('#delivery_memo').val();
+
+        console.log(color, count, name, address, phone, message)
 
         if (color == '') {
             alert('컬러를 선택해주세요')
@@ -206,13 +254,69 @@
         } else if (!isCellphone(phone)) {  // \n은 (newline) 다음줄 맨 처음으로 가라는 의미
             alert('휴대폰번호 입력형식이 아닙니다. \n 010-0000-0000으로 입력해주세요')
 
+
         }
+
+        function isCellphone(p) {
+            let regNum = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[-][0-9]{3,4}[-][0-9]{4}$/;
+            return regNum.test(p);
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/order",
+            data: {
+                color_from_client: color,
+                count_from_client: count,
+                name_from_client: name,
+                address_from_client: address,
+                phone_from_client: phone,
+                message_from_client: message,
+            },
+            success: function (response) {
+                if (response["result"] == "success") {
+                    alert(response["msg"]);
+                    window.location.reload();
+                }
+            }
+        })
     }
 
-    function isCellphone(p) {
-        let regNum = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[-][0-9]{3,4}[-][0-9]{4}$/;
-        return regNum.test(p);
+    function showOrder() {
+        // 1. 주문목록을 서버에 요청하기
+        // 2. 요청 성공 여부 확인하기
+        // 3. 요청 성공했을 때 주문리스트를 올바르게 화면에 나타내기
+        $.ajax({
+            type: "GET",
+            url: "/order",
+            data: {},
+            success: function (response) {
+                if (response["result"] == "success") {
+                    let orderLists = response['orderList_from_server']
+                    for (let i = 0; i < orderLists.length; i++) {
+                        makeOrderList(orderLists[i]["color_from_client"], orderLists[i]["count_from_client"], orderLists[i]["name_from_client"], orderLists[i]["address_from_client"], orderLists[i]["phone_from_client"], orderLists[i]["message_from_client"]);
+
+                    }
+                    // alert(response["msg"]);
+                } else {
+                    alert("리스트를 받아오지 못했습니다");
+                }
+            }
+        })
     }
+
+    function makeOrderList(color_from_client, count_from_client, name_from_client, address_from_client, phone_from_client, message_from_client) {
+        let tempHtml = `<tr>
+                    <td>${color_from_client}</td>
+                    <td>${count_from_client}</td>
+                    <td>${name_from_client}</td>
+                    <td>${address_from_client}</td>
+                    <td>${phone_from_client}</td>
+                    <td>${message_from_client}</td>
+                </tr>`;
+        $("#orders_box").append(tempHtml);
+    }
+
 
     function showExchange() {
         $.ajax({
